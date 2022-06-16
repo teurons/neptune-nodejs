@@ -15,5 +15,8 @@
     "Neptune"
   ],
   "author": "Rajiv Seelam",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "node-fetch": "^3.2.6"
+  }
 }
