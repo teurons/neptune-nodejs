@@ -1,5 +1,5 @@
 #!/bin/bash
-eval yarn bump:minor
+eval yarn bump
 
 eval git push origin master --tags
 
