@@ -4,7 +4,11 @@
   "description": "NodeJS Package for Teuron's Neptune",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "release": "gh release create",
+    "bump": "npm version patch",
+    "bump:pre": "npm version prerelease --preid=alpha",
+    "bump:minor": "npm version minor"
   },
   "keywords": [
     "Teurons",
