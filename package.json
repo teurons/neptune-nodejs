@@ -17,6 +17,6 @@
   "author": "Rajiv Seelam",
   "license": "ISC",
   "dependencies": {
-    "node-fetch": "^3.2.6"
+    "axios": "^0.21.1"
   }
 }
