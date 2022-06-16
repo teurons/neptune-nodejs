@@ -1,0 +1,15 @@
+{
+  "name": "@teurons/neptune-nodejs",
+  "version": "1.0.0",
+  "description": "NodeJS Package for Teuron's Neptune",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "Teurons",
+    "Neptune"
+  ],
+  "author": "Rajiv Seelam",
+  "license": "ISC"
+}
