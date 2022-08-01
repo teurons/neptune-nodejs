@@ -5,6 +5,7 @@ const EDGE_API_BASE = "https://edge.teurons.com/neptune";
 
 const defaultAxios = axios.create();
 const edgeAxios = axios.create();
+const usersAxios = axios.create();
 
 defaultAxios.defaults.baseURL = DEFAULT_API_BASE;
 
@@ -16,6 +17,13 @@ edgeAxios.defaults.baseURL = EDGE_API_BASE;
 
 edgeAxios.defaults.headers.common = {
   "Content-Type": "application/json",
+};
+
+usersAxios.defaults.baseURL = DEFAULT_API_BASE;
+
+usersAxios.defaults.headers.common = {
+  "Content-Type": "application/json",
+  Authorization: `Bearer ${process.env.NEPTUNE_TOKEN}`,
 };
 
 const init = (env, token) => {
@@ -67,4 +75,136 @@ const fire = (eventType, data, payload) => {
   });
 };
 
-module.exports = { fire, init, fetchEnvironments };
+const createUser = (payload) => {
+  return new Promise((resolve, reject) => {
+    let uri = `/${process.env.NEPTUNE_ENV}/users`;
+
+    usersAxios
+      .post(uri, payload)
+      .then((response) => {
+        resolve(response.data);
+      })
+      .catch((errors) => {
+        reject(errors);
+      });
+  });
+};
+
+const getUser = (user_id) => {
+  return new Promise((resolve, reject) => {
+    let uri = `/${process.env.NEPTUNE_ENV}/users/${user_id}?includes=contact_infos`;
+
+    usersAxios
+      .get(uri)
+      .then((response) => {
+        resolve(response.data);
+      })
+      .catch((errors) => {
+        reject(errors);
+      });
+  });
+};
+
+const getAllUsers = () => {
+  return new Promise((resolve, reject) => {
+    let uri = `/${process.env.NEPTUNE_ENV}/users`;
+
+    usersAxios
+      .get(uri)
+      .then((response) => {
+        resolve(response.data);
+      })
+      .catch((errors) => {
+        reject(errors);
+      });
+  });
+};
+
+const updateUser = (user_id, payload) => {
+  return new Promise((resolve, reject) => {
+    let uri = `/${process.env.NEPTUNE_ENV}/users/${user_id}`;
+
+    usersAxios
+      .put(uri, payload)
+      .then((response) => {
+        resolve(response.data);
+      })
+      .catch((errors) => {
+        reject(errors);
+      });
+  });
+};
+
+const deleteUser = (user_id) => {
+  return new Promise((resolve, reject) => {
+    let uri = `/${process.env.NEPTUNE_ENV}/users/${user_id}`;
+
+    usersAxios
+      .delete(uri)
+      .then((response) => {
+        resolve(response.data);
+      })
+      .catch((errors) => {
+        reject(errors);
+      });
+  });
+};
+
+const addUserContactInfo = (user_id, payload) => {
+  return new Promise((resolve, reject) => {
+    let uri = `/${process.env.NEPTUNE_ENV}/users/${user_id}/contacts_info`;
+
+    usersAxios
+      .post(uri, payload)
+      .then((response) => {
+        resolve(response.data);
+      })
+      .catch((errors) => {
+        reject(errors);
+      });
+  });
+};
+
+const updateUserContactInfo = (user_id, payload) => {
+  return new Promise((resolve, reject) => {
+    let uri = `/${process.env.NEPTUNE_ENV}/users/${user_id}/contacts_info`;
+
+    usersAxios
+      .put(uri, payload)
+      .then((response) => {
+        resolve(response.data);
+      })
+      .catch((errors) => {
+        reject(errors);
+      });
+  });
+};
+
+const deleteUserContactInfo = (user_id, payload) => {
+  return new Promise((resolve, reject) => {
+    let uri = `/${process.env.NEPTUNE_ENV}/users/${user_id}/contacts_info`;
+
+    usersAxios
+      .delete(uri, payload)
+      .then((response) => {
+        resolve(response.data);
+      })
+      .catch((errors) => {
+        reject(errors);
+      });
+  });
+};
+
+module.exports = {
+  fire,
+  init,
+  fetchEnvironments,
+  createUser,
+  getUser,
+  getAllUsers,
+  updateUser,
+  deleteUser,
+  addUserContactInfo,
+  updateUserContactInfo,
+  deleteUserContactInfo,
+};
