@@ -1,6 +1,6 @@
 {
   "name": "@teurons/neptune-nodejs",
-  "version": "1.1.10",
+  "version": "1.1.11",
   "description": "NodeJS Package for Teuron's Neptune",
   "main": "src/index.js",
   "scripts": {
