@@ -218,7 +218,7 @@ const deleteUserContactInfo = (user_id, payload) => {
       let uri = `/${process.env.NEPTUNE_ENV}/users/${user_id}/contacts_info`;
 
       usersAxios
-        .delete(uri, payload)
+        .delete(uri, { data: payload })
         .then((response) => {
           resolve(response.data);
         })
